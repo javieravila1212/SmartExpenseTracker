@@ -1,0 +1,18 @@
+# Virtual environment
+.venv/
+
+# Environment files
+.env
+
+# Node modules
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# pytest cache
+.pytest_cache/
+
+# Editor files
+.vscode/
