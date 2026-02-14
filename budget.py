@@ -86,7 +86,11 @@ except Exception:
     plt = None
     print("matplotlib not installed; skipping plots.")
 
-expense_summary = data[data['Category'] != 'Income'].groupby("Category")["Amount"].sum()
+expense_summary = (
+    data[data['Category'] != 'Income']
+    .groupby("Category")["Amount"].sum()
+    .sort_values(ascending=False)
+)
 
 if plt is not None:
     # Pie Chart
