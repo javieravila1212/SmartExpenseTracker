@@ -27,7 +27,9 @@ def summarize_expenses(by="Category"):
     summary = data[data["Income/Expense"]=="Expense"].groupby(by)["Amount"].sum()
     return summary.sort_values(ascending=False)
 print(summarize_expenses())
+
 import os
+
 try:
     from dotenv import load_dotenv
 except Exception:
@@ -77,3 +79,27 @@ data['Category'] = data.apply(
 )
 
 print(data[['Note', 'Category']].head(10))
+
+try:
+    import matplotlib.pyplot as plt
+except Exception:
+    plt = None
+    print("matplotlib not installed; skipping plots.")
+
+expense_summary = data[data['Category'] != 'Income'].groupby("Category")["Amount"].sum()
+
+if plt is not None:
+    # Pie Chart
+    plt.figure(figsize=(6,6))
+    expense_summary.plot.pie(autopct='%1.1f%%', startangle=90, shadow=True)
+    plt.title("Expenses Breakdown by Category")
+    plt.ylabel("")
+    plt.show()
+
+    # Bar Chart
+    plt.figure(figsize=(8,5))
+    expense_summary.plot(kind="bar", color="skyblue", edgecolor="black")
+    plt.title("Expenses by Category")
+    plt.xlabel("Category")
+    plt.ylabel("Amount Spent")
+    plt.show()
