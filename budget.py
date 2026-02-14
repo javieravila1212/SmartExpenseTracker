@@ -98,6 +98,7 @@ if plt is not None:
     expense_summary.plot.pie(autopct='%1.1f%%', startangle=90, shadow=True)
     plt.title("Expenses Breakdown by Category")
     plt.ylabel("")
+    plt.savefig("expense_pie.png", bbox_inches='tight')
     plt.show()
 
     # Bar Chart
@@ -106,4 +107,5 @@ if plt is not None:
     plt.title("Expenses by Category")
     plt.xlabel("Category")
     plt.ylabel("Amount Spent")
+    plt.savefig("expense_bar.png", bbox_inches='tight')
     plt.show()
